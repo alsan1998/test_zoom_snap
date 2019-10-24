@@ -52,10 +52,10 @@ const snaparea = document.getElementById("snap-area");
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
-if (window.internals) {
-const scale_factor = 2;
-  internals.setPageScaleFactor(scale_factor);
-  internals.setVisualViewportOffset(0, 0);
+  if (window.internals) {
+    const scale_factor = 2;
+    internals.setPageScaleFactor(scale_factor);
+    internals.setVisualViewportOffset(0, 0);
   }
 
   requestAnimationFrame(() => {
@@ -67,5 +67,6 @@ const scale_factor = 2;
       }
     });
   });
+});
 
 </script>
