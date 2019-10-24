@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       if (!window.internals) {
-        snap_area.style.backgroundColor = 'yellow';
+        snaparea.style.backgroundColor = 'yellow';
       } else if (window.internals.effectiveRootScroller(document) != rootscroller) {
               snaparea.style.backgroundColor = 'green';
       }
