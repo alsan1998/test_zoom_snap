@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<style>
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+#root-scroller::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+#root-scroller {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: red;
+  scroll-snap-type: y mandatory;
+}
+
+.spacer {
+  width: 100%;
+  height: 100%;
+}
+
+#snap-area {
+  width: 200px;
+  height: 50%;
+  background-color: blue;
+  scroll-snap-align: start;
+}
+</style>
+
+<div id="root-scroller">
+  <div class="spacer" style="background-color: PaleGreen"></div>
+  <div class="spacer" style="background-color: PaleGreen"></div>
+  <div id="snap-area"></div>
+</div>
+
+<script>
+if (window.internals) {
+  internals.runtimeFlags.implicitRootScrollerEnabled = true;
+}
+
+const rootscroller = document.getElementById("root-scroller");
+const snaparea = document.getElementById("snap-area");
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+if (window.internals) {
+const scale_factor = 2;
+  internals.setPageScaleFactor(scale_factor);
+  internals.setVisualViewportOffset(0, 0);
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (!window.internals) {
+        snap_area.style.backgroundColor = 'yellow';
+      } else if (window.internals.effectiveRootScroller(document) != rootscroller) {
+              snap_area.style.backgroundColor = 'green';
+      }
+    });
+  });
+
+</script>
